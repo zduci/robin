@@ -1,7 +1,4 @@
-class Runner
-  def self.run
-  end
-end
+require 'runner'
 
 describe 'robin' do
   it 'fetches twitter stream' do
