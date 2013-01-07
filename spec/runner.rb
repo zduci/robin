@@ -5,7 +5,6 @@ class Runner
 
   def self.run
     stdin, stdout, stderr = Open3.popen3('ruby', ROBIN)
-    return stderr.gets if stderr
-    stdout.gets
+    stderr.gets ? stderr.read : stdout.read
   end
 end
