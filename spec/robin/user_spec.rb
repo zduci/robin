@@ -7,4 +7,9 @@ describe Robin::User do
     Robin::User.token.should == 'token'
     Robin::User.secret.should == 'secret'
   end
+
+  it 'raises an exception is there are no user credentials' do
+    File.stub(:exists?) { false }
+    lambda { Robin::User.load_credentials }.should raise_error Robin::NoCredentials
+  end
 end

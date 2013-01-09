@@ -1,5 +1,7 @@
 module Robin
   class User
+    CREDENTIALS = '~/robin'
+
     class << self
       attr_reader :token, :secret
     end
@@ -11,8 +13,12 @@ module Robin
     end
 
     def self.read_credentials
-      credentials = File.expand_path('~/.robin')
+      raise NoCredentials.new unless File.exists?(CREDENTIALS)
+      credentials = File.expand_path(CREDENTIALS)
       File.read(credentials)
     end
+  end
+
+  class NoCredentials < Exception
   end
 end
