@@ -1,13 +1,13 @@
 module Robin
   class User
-    CREDENTIALS = '~/robin'
+    CREDENTIALS = File.expand_path('~/.robin')
 
     class << self
       attr_reader :token, :secret
     end
 
     def self.load_credentials
-      credentials = read_credentials.split('\n')
+      credentials = read_credentials.split(/\n/)
       @token = credentials[0]
       @secret = credentials[1]
     end
