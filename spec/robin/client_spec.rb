@@ -1,10 +1,6 @@
 require 'robin/client'
 require 'vcr'
-
-VCR.configure do |c|
-    c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-    c.hook_into :webmock
-end
+require 'vcr_helper'
 
 describe Robin::Client do
   it 'retrieves the user\'s home timeline' do

@@ -1,3 +1,5 @@
+require_relative 'config'
+require_relative 'user'
 require 'twitter'
 
 module Robin
