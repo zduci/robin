@@ -3,7 +3,7 @@ require 'vcr'
 
 
 describe 'robin' do
-  it "fetches the user's home timeline" do
+  it "prints the user's home timeline" do
     VCR.use_cassette('home_timeline') do
       Runner.run
       expect(Runner.output).to start_with "RT @lancewalton: Performance Related Pay for school teachers is lunacy. Pay teachers more and remove almost all performance measures."
@@ -11,4 +11,11 @@ describe 'robin' do
     end
   end
 
+  it "prints the user's latest tweets" do
+    VCR.use_cassette('user_timeline') do
+      Runner.run(['-i'])
+      expect(Runner.output).to start_with "please make the gaga stop"
+      expect(Runner.output).to end_with "set -o vi\n"
+    end
+  end
 end

@@ -2,9 +2,9 @@ require 'stringio'
 require 'robin'
 
 class Runner
-  def self.run
+  def self.run(args = [])
     @stream = StringIO.new
-    main(@stream)
+    main(@stream, args)
   end
 
   def self.output
