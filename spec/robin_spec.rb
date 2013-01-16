@@ -1,6 +1,6 @@
 require 'runner'
 require 'vcr'
-
+require 'vcr_helper'
 
 describe 'robin' do
   it "prints the user's home timeline" do
@@ -16,6 +16,16 @@ describe 'robin' do
       Runner.run(['-i'])
       expect(Runner.output).to start_with "please make the gaga stop"
       expect(Runner.output).to end_with "set -o vi\n"
+    end
+  end
+
+  it "tweets and prints the tweet" do
+    VCR.use_cassette('new_tweet') do
+      Runner.run(['-t', 'test'])
+      expect(Runner.output).to eq "test\n"
+
+      Runner.run(['-i'])
+      expect(Runner.output).to start_with 'test'
     end
   end
 end

@@ -20,5 +20,11 @@ describe Robin::Client do
       timeline[19].full_text.should == "set -o vi"
     end
   end
-end
 
+  it "tweets a new tweet" do
+    VCR.use_cassette('new_tweet') do
+      Robin::Client.tweet('test')
+      Robin::Client.user_timeline.first.full_text.should == 'test'
+    end
+  end
+end

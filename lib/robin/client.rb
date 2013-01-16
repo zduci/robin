@@ -18,5 +18,9 @@ module Robin
     def self.user_timeline
       @client.user_timeline
     end
+
+    def self.tweet(message)
+      @client.update(message)
+    end
   end
 end
