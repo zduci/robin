@@ -1,7 +1,16 @@
 module Robin::Actions
   class FollowersAction
+    def initialize(user = CURRENT_USER)
+      @user = user
+    end
+
     def execute(client, stream)
-      client.followers.each do |follower|
+      if @user
+        followers = client.followers(@user)
+      else
+        followers = client.followers
+      end
+      followers.each do |follower|
         stream.puts "#{follower.name} (#{follower.screen_name})"
       end
     end

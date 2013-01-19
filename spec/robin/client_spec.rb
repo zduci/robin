@@ -35,4 +35,12 @@ describe Robin::Client do
       followers[14].name.should == "Duncan Grant"
     end
   end
+
+  it "retrieves another user's followers" do
+    VCR.use_cassette('another_user_followers') do
+      followers = Robin::Client.followers("carvalho82")
+      followers[0].name.should == "Gill Gillies"
+      followers[1].name.should == "Ros McDonagh"
+    end
+  end
 end

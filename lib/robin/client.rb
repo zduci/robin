@@ -23,8 +23,12 @@ module Robin
       @client.update(message)
     end
 
-    def self.followers
-      @client.followers.users
+    def self.followers(user = nil)
+      if user
+        @client.followers(user).users
+      else
+        @client.followers.users
+      end
     end
   end
 end
