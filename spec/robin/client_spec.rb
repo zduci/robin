@@ -27,4 +27,12 @@ describe Robin::Client do
       Robin::Client.user_timeline.first.full_text.should == 'test'
     end
   end
+
+  it "retrieves the user's followers" do
+    VCR.use_cassette('user_followers') do
+      followers = Robin::Client.followers
+      followers[0].name.should == "Sang Jakob"
+      followers[14].name.should == "Duncan Grant"
+    end
+  end
 end

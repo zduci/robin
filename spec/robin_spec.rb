@@ -38,4 +38,12 @@ describe 'robin' do
       expect(Runner.output).to start_with 'test'
     end
   end
+
+  it "prints the user's followers" do
+    VCR.use_cassette('user_followers') do
+      Runner.run(['-fr'])
+      expect(Runner.output).to start_with "Sang Jakob (Carleyahoj)"
+      expect(Runner.output).to end_with "Syprian (siopenschtein)\n"
+    end
+  end
 end

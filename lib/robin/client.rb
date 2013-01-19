@@ -22,5 +22,9 @@ module Robin
     def self.tweet(message)
       @client.update(message)
     end
+
+    def self.followers
+      @client.followers.users
+    end
   end
 end
