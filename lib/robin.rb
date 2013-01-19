@@ -1,23 +1,9 @@
 require_relative 'robin/client'
+require_relative 'robin/args_parser'
 
 def main(stream, args)
-  if args.empty?
-    Robin::Client.home_timeline.each do |tweet|
-      stream.puts tweet.full_text
-    end
-  else
-    if args[0].start_with?('-')
-      if args[0] == '-i'
-        Robin::Client.user_timeline.each do |tweet|
-          stream.puts tweet.full_text
-        end
-      elsif args[0] == '-t'
-        stream.puts Robin::Client.tweet(args[1]).full_text
-      end
-    else
-        stream.puts Robin::Client.tweet(args[0]).full_text
-    end
-  end
+  action = Robin::ArgsParser.parse(args)
+  action.execute(Robin::Client, stream)
 end
 
 if __FILE__ == $0
