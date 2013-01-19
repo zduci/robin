@@ -28,4 +28,14 @@ describe 'robin' do
       expect(Runner.output).to start_with 'test'
     end
   end
+
+  it "tweets without the -t flag" do
+    VCR.use_cassette('new_tweet') do
+      Runner.run(['test'])
+      expect(Runner.output).to eq "test\n"
+
+      Runner.run(['-i'])
+      expect(Runner.output).to start_with 'test'
+    end
+  end
 end
