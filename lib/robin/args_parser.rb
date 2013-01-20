@@ -3,6 +3,7 @@ require_relative 'actions/home_timeline'
 require_relative 'actions/user_timeline'
 require_relative 'actions/followers'
 require_relative 'actions/unknown_flag'
+require_relative 'actions/help'
 
 module Robin
   class ArgsParser
@@ -23,6 +24,8 @@ module Robin
             Robin::Actions::Followers.new args[1]
           elsif args[0] == '-s'
             Robin::Actions::HomeTimeline.new
+          elsif args[0] == '-h' || args[0] == '--help'
+            Robin::Actions::Help.new
           else
             Robin::Actions::UnknownFlag.new(args[0])
           end
