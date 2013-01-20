@@ -4,7 +4,7 @@ require 'vcr_helper'
 
 describe 'robin' do
   context 'home timeline' do
-    it "prints the user's home timeline" do
+    it "prints the authenticated user's home timeline" do
       VCR.use_cassette('home_timeline') do
         Runner.run
         expect(Runner.output).to start_with "RT @lancewalton: Performance Related Pay for school teachers is lunacy. Pay teachers more and remove almost all performance measures."
@@ -12,7 +12,7 @@ describe 'robin' do
       end
     end
 
-    it "prints the user's home timeline using -s flag" do
+    it "prints the authenticated user's home timeline using -s flag" do
       VCR.use_cassette('home_timeline') do
         Runner.run(["-s"])
         expect(Runner.output).to start_with "RT @lancewalton: Performance Related Pay for school teachers is lunacy. Pay teachers more and remove almost all performance measures."
@@ -22,11 +22,19 @@ describe 'robin' do
   end
 
   context 'latest tweets' do
-    it "prints the user's latest tweets" do
+    it "prints the authenticated user's latest tweets" do
       VCR.use_cassette('user_timeline') do
         Runner.run(['-i'])
         expect(Runner.output).to start_with "please make the gaga stop"
         expect(Runner.output).to end_with "set -o vi\n"
+      end
+    end
+
+    it "prints another user's latest tweets" do
+      VCR.use_cassette('another_user_timeline') do
+        Runner.run(['-i', 'RichardDawkins'])
+        expect(Runner.output).to start_with "@CylonFem It's all explained, to the best of my ability, in The Selfish Gene, Chapter 12."
+        expect(Runner.output).to end_with "It was iCloud. Thanks, those who explained it to me. The 1st \"God must have done it\" joke was too predictable to be funny. The 200th . . .\n"
       end
     end
   end
@@ -54,7 +62,7 @@ describe 'robin' do
   end
 
   context 'followers' do
-    it "prints the user's followers" do
+    it "prints the authenticated user's followers" do
       VCR.use_cassette('user_followers') do
         Runner.run(['-fr'])
         expect(Runner.output).to start_with "Sang Jakob (Carleyahoj)"

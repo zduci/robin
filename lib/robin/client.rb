@@ -15,8 +15,12 @@ module Robin
       @client.home_timeline
     end
 
-    def self.user_timeline
-      @client.user_timeline
+    def self.user_timeline(user = nil)
+      if user
+        @client.user_timeline(user)
+      else
+        @client.user_timeline
+      end
     end
 
     def self.tweet(message)

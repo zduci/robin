@@ -11,7 +11,12 @@ module Robin
       else
         if args[0].start_with?('-')
           if args[0] == '-i'
-            Robin::Actions::UserTimelineAction.new
+            if args[1]
+              Robin::Actions::UserTimelineAction.new(args[1])
+            else
+              Robin::Actions::UserTimelineAction.new
+            end
+
           elsif args[0] == '-t'
             Robin::Actions::NewTweetAction.new(args[1])
           elsif args[0] == '-fr'

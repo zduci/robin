@@ -4,10 +4,9 @@ require 'vcr_helper'
 
 describe Robin::Client do
   context 'home timeline' do
-    it "retrieves the user's home timeline" do
+    it "retrieves the authenticated user's home timeline" do
       VCR.use_cassette('home_timeline') do
         timeline = Robin::Client.home_timeline
-        timeline.size.should == 20
         timeline[0].full_text.should == "RT @lancewalton: Performance Related Pay for school teachers is lunacy. Pay teachers more and remove almost all performance measures."
         timeline[19].full_text.should == "Hey @sramsay, I wonder what you'd think of http://t.co/455yw8DP in light of 'algorithmic criticism'."
       end
@@ -15,12 +14,19 @@ describe Robin::Client do
   end
 
   context 'user timeline' do
-    it "retrieves the user's own timeline" do
+    it "retrieves the authenticated user's timeline" do
       VCR.use_cassette('user_timeline') do
         timeline = Robin::Client.user_timeline
-        timeline.size.should == 20
         timeline[0].full_text.should == "please make the gaga stop"
         timeline[19].full_text.should == "set -o vi"
+      end
+    end
+
+    it "retrieves another user's timeline" do
+      VCR.use_cassette('another_user_timeline') do
+        timeline = Robin::Client.user_timeline('RichardDawkins')
+        timeline[0].full_text.should == "@CylonFem It's all explained, to the best of my ability, in The Selfish Gene, Chapter 12."
+        timeline[19].full_text.should == "It was iCloud. Thanks, those who explained it to me. The 1st \"God must have done it\" joke was too predictable to be funny. The 200th . . ."
       end
     end
   end
@@ -35,7 +41,7 @@ describe Robin::Client do
   end
 
   context 'followers' do
-    it "retrieves the user's followers" do
+    it "retrieves the authenticated user's followers" do
       VCR.use_cassette('user_followers') do
         followers = Robin::Client.followers
         followers[0].name.should == "Sang Jakob"
