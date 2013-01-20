@@ -15,7 +15,9 @@ module Robin
           elsif args[0] == '-t'
             Robin::Actions::NewTweetAction.new(args[1])
           elsif args[0] == '-fr'
-              Robin::Actions::FollowersAction.new args[1]
+            Robin::Actions::FollowersAction.new args[1]
+          elsif args[0] == '-s'
+            Robin::Actions::HomeTimelineAction.new
           end
         else
             Robin::Actions::NewTweetAction.new(args[0])
