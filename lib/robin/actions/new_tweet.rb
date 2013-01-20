@@ -1,5 +1,5 @@
 module Robin::Actions
-  class NewTweetAction
+  class NewTweet
     def initialize(text)
       @text = text
     end

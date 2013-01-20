@@ -1,5 +1,5 @@
 module Robin::Actions
-  class HomeTimelineAction
+  class HomeTimeline
     def execute(client, stream)
       client.home_timeline.each do |tweet|
         stream.puts tweet.full_text

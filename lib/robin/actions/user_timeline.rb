@@ -1,5 +1,5 @@
 module Robin::Actions
-  class UserTimelineAction
+  class UserTimeline
     def initialize(user = nil)
       @user = user
     end

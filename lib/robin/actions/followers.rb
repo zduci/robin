@@ -1,5 +1,5 @@
 module Robin::Actions
-  class FollowersAction
+  class Followers
     def initialize(user = CURRENT_USER)
       @user = user
     end

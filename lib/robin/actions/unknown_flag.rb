@@ -1,5 +1,5 @@
 module Robin::Actions
-  class UnknownFlagAction
+  class UnknownFlag
     def initialize(flag)
       @flag = flag
     end
