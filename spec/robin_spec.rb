@@ -78,4 +78,11 @@ describe 'robin' do
       end
     end
   end
+
+  context 'unknown flags' do
+    it 'prints an error for unknown flags' do
+      Runner.run(["-cthulhu"])
+      expect(Runner.output).to eq "Unknown flag '-cthulhu'. Try -h for help.\n"
+    end
+  end
 end
