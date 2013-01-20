@@ -41,7 +41,7 @@ module Robin
       elsif NEW_TWEET.include?(flag)
         tweet(option)
       elsif FOLLOWERS.include?(flag)
-        Robin::Actions::Followers.new(option)
+        followers(option)
       elsif HOME_TIMELINE.include?(flag)
         Robin::Actions::HomeTimeline.new
       elsif HELP.include?(flag)
@@ -57,6 +57,10 @@ module Robin
       else
         Robin::Actions::EmptyTweet.new
       end
+    end
+
+    def self.followers(option)
+      Robin::Actions::Followers.new(option)
     end
   end
 end

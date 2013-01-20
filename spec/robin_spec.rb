@@ -82,9 +82,16 @@ describe 'robin' do
         expect(Runner.output).to end_with "Jaime Oliveira (jaimeoliv)\n"
       end
     end
+
+    it 'prints an error for inexistent users' do
+      VCR.use_cassette('inexistent_user') do
+        Runner.run('-fr', 'this_user_does_not_exist')
+        expect(Runner.output).to eq "This user does not exist\n"
+      end
+    end
   end
 
-  context 'unknown flags' do
+  context 'errors' do
     it 'prints an error for unknown flags' do
       Runner.run("-cthulhu")
       expect(Runner.output).to eq "Unknown flag 'cthulhu'. Try -h for help.\n"

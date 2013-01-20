@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/followers/list.json?cursor=-1&screen_name=this_user_does_not_exist
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Twitter Ruby Gem 4.4.3
+      Authorization:
+      - OAuth oauth_consumer_key="WgyUHBHODrfuzwGYdfukw", oauth_nonce="90c64d63c12926eb2ed8b6c3043620a8",
+        oauth_signature="NrfsLmSvGiAlrgr%2BfL%2BUxxHfiwg%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1358710446", oauth_token="250331291-cDP6aTlcl3Mc9mjXgbHDQhhq7xxIttZ0qQsFFEqu",
+        oauth_version="1.0"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 404
+      message: !binary |-
+        Tm90IEZvdW5k
+    headers:
+      !binary "WC1BY2Nlc3MtTGV2ZWw=":
+      - !binary |-
+        cmVhZC13cml0ZQ==
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        U3VuLCAyMCBKYW4gMjAxMyAxOTozNDowOCBHTVQ=
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        VHVlLCAzMSBNYXIgMTk4MSAwNTowMDowMCBHTVQ=
+      !binary "UHJhZ21h":
+      - !binary |-
+        bm8tY2FjaGU=
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGUsIG5vLXN0b3JlLCBtdXN0LXJldmFsaWRhdGUsIHByZS1jaGVj
+        az0wLCBwb3N0LWNoZWNrPTA=
+      !binary "U2V0LUNvb2tpZQ==":
+      - !binary |-
+        Z3Vlc3RfaWQ9djElM0ExMzU4NzEwNDQ4NDA4Mjc4ODM7IEV4cGlyZXM9VHVl
+        LCAyMC1KYW4tMjAxNSAxOTozNDowOCBHTVQ7IFBhdGg9LzsgRG9tYWluPS50
+        d2l0dGVyLmNvbQ==
+      - !binary |-
+        bGFuZz1lbg==
+      !binary "WC1UcmFuc2FjdGlvbg==":
+      - !binary |-
+        YzAxMzdjNGNjNWQ4NWZiNA==
+      !binary "WC1GcmFtZS1PcHRpb25z":
+      - !binary |-
+        U0FNRU9SSUdJTg==
+      !binary "U3RhdHVz":
+      - !binary |-
+        NDA0IE5vdCBGb3VuZA==
+      !binary "RGF0ZQ==":
+      - !binary |-
+        U3VuLCAyMCBKYW4gMjAxMyAxOTozNDowOCBHTVQ=
+      !binary "WC1SYXRlLUxpbWl0LUxpbWl0":
+      - !binary |-
+        MTU=
+      !binary "WC1SYXRlLUxpbWl0LVJlbWFpbmluZw==":
+      - !binary |-
+        MTQ=
+      !binary "WC1SYXRlLUxpbWl0LVJlc2V0":
+      - !binary |-
+        MTM1ODcxMTM0OA==
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "U2VydmVy":
+      - !binary |-
+        dGZl
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        OTI=
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAKpWSi0qyi8qVrKKrlbKTS0uTkxPVbJSCs4vKqrUUSjJSCxR
+        KAAKKaTkpxYr5OWXKKRWZBaXKOkoJeenABUam9TG1gIAAAD//wMAke1ZcEQA
+        AAA=
+    http_version: 
+  recorded_at: Sun, 20 Jan 2013 19:34:08 GMT
+recorded_with: VCR 2.4.0
