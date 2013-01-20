@@ -59,6 +59,11 @@ describe 'robin' do
         expect(Runner.output).to start_with 'test'
       end
     end
+
+    it 'does not tweet an empty message' do
+      Runner.run(['-t', ''])
+      expect(Runner.output).to eq "You cannot tweet an empty message!\n"
+    end
   end
 
   context 'followers' do

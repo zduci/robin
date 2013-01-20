@@ -4,6 +4,7 @@ require_relative 'actions/user_timeline'
 require_relative 'actions/followers'
 require_relative 'actions/unknown_flag'
 require_relative 'actions/help'
+require_relative 'actions/empty_tweet'
 
 module Robin
   class ArgsParser
@@ -19,7 +20,11 @@ module Robin
               Robin::Actions::UserTimeline.new
             end
           elsif args[0] == '-t'
-            Robin::Actions::NewTweet.new(args[1])
+            if args[1] && !args[1].empty?
+              Robin::Actions::NewTweet.new(args[1])
+            else
+              Robin::Actions::EmptyTweet.new
+            end
           elsif args[0] == '-fr'
             Robin::Actions::Followers.new args[1]
           elsif args[0] == '-s'
