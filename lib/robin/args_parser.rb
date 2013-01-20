@@ -8,35 +8,54 @@ require_relative 'actions/empty_tweet'
 
 module Robin
   class ArgsParser
+    USER_TIMELINE = ['i']
+    NEW_TWEET = ['t']
+    FOLLOWERS = ['fr']
+    HOME_TIMELINE = ['s']
+    HELP = ['h', '-help']
+
     def self.parse(args)
       if args.empty?
         Robin::Actions::HomeTimeline.new
       else
-        if args[0].start_with?('-')
-          if args[0] == '-i'
-            if args[1]
-              Robin::Actions::UserTimeline.new(args[1])
-            else
-              Robin::Actions::UserTimeline.new
-            end
-          elsif args[0] == '-t'
-            if args[1] && !args[1].empty?
-              Robin::Actions::NewTweet.new(args[1])
-            else
-              Robin::Actions::EmptyTweet.new
-            end
-          elsif args[0] == '-fr'
-            Robin::Actions::Followers.new args[1]
-          elsif args[0] == '-s'
-            Robin::Actions::HomeTimeline.new
-          elsif args[0] == '-h' || args[0] == '--help'
-            Robin::Actions::Help.new
-          else
-            Robin::Actions::UnknownFlag.new(args[0])
-          end
-        else
-            Robin::Actions::NewTweet.new(args[0])
-        end
+        parse_args(args)
+      end
+    end
+
+    private
+
+    def self.parse_args(args)
+      if args[0].start_with?('-')
+        using_flag(args)
+      else
+        Robin::Actions::NewTweet.new(args[0])
+      end
+    end
+
+    def self.using_flag(args)
+      flag = args[0][1..args[0].length]
+      option = args[1]
+
+      if USER_TIMELINE.include?(flag)
+        Robin::Actions::UserTimeline.new(option)
+      elsif NEW_TWEET.include?(flag)
+        tweet(option)
+      elsif FOLLOWERS.include?(flag)
+        Robin::Actions::Followers.new(option)
+      elsif HOME_TIMELINE.include?(flag)
+        Robin::Actions::HomeTimeline.new
+      elsif HELP.include?(flag)
+        Robin::Actions::Help.new
+      else
+        Robin::Actions::UnknownFlag.new(flag)
+      end
+    end
+
+    def self.tweet(option)
+      if option && !option.empty?
+        Robin::Actions::NewTweet.new(option)
+      else
+        Robin::Actions::EmptyTweet.new
       end
     end
   end
