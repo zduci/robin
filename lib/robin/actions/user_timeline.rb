@@ -4,7 +4,7 @@ module Robin::Actions
       @user = user
     end
 
-    def execute(client, stream)
+    def execute(client, output, input)
       if @user
         timeline = client.user_timeline(@user)
       else
@@ -12,7 +12,7 @@ module Robin::Actions
       end
 
       timeline.each do |tweet|
-        stream.puts tweet.full_text
+        output.puts tweet.full_text
       end
     end
   end

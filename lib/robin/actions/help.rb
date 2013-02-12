@@ -8,8 +8,8 @@ Usage:
     -i [<user>]         - The user timeline for the authenticated user or specified user handle
     -h                  - This help message
 EOF
-    def execute(client, stream)
-      stream.puts HELP
+    def execute(client, output, input)
+      output.puts HELP
     end
   end
 end

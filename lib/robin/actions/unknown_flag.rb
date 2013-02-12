@@ -4,8 +4,8 @@ module Robin::Actions
       @flag = flag
     end
 
-    def execute(client, stream)
-      stream.puts "Unknown flag '#{@flag}'. Try -h for help."
+    def execute(client, output, input)
+      output.puts "Unknown flag '#{@flag}'. Try -h for help."
     end
   end
 end

@@ -4,8 +4,8 @@ module Robin::Actions
       @text = text
     end
 
-    def execute(client, stream)
-      stream.puts client.tweet(@text).full_text
+    def execute(client, output, input)
+      output.puts client.tweet(@text).full_text
     end
   end
 end

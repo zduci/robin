@@ -4,7 +4,7 @@ module Robin::Actions
       @user = user
     end
 
-    def execute(client, stream)
+    def execute(client, output, input)
       begin
         if @user
           followers = client.followers(@user)
@@ -12,10 +12,10 @@ module Robin::Actions
           followers = client.followers
         end
         followers.each do |follower|
-          stream.puts "#{follower.name} (#{follower.screen_name})"
+          output.puts "#{follower.name} (#{follower.screen_name})"
         end
       rescue Twitter::Error::NotFound => e
-        stream.puts "This user does not exist"
+        output.puts "This user does not exist"
       end
     end
   end
