@@ -5,6 +5,7 @@ require_relative 'actions/followers'
 require_relative 'actions/unknown_flag'
 require_relative 'actions/help'
 require_relative 'actions/empty_tweet'
+require_relative 'actions/authenticate'
 
 module Robin
   class ArgsParser
@@ -13,6 +14,7 @@ module Robin
     FOLLOWERS = ['fr']
     HOME_TIMELINE = ['s']
     HELP = ['h', '-help']
+    NEW_USER = ['user']
 
     def self.parse(args)
       if args.empty?
@@ -38,6 +40,8 @@ module Robin
 
       if USER_TIMELINE.include?(flag)
         Robin::Actions::UserTimeline.new(option)
+      elsif NEW_USER.include?(flag)
+        Robin::Actions::Authenticate.new
       elsif NEW_TWEET.include?(flag)
         tweet(option)
       elsif FOLLOWERS.include?(flag)
