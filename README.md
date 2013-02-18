@@ -1,6 +1,10 @@
 ##Robin
 Robin is a command-line twitter client written in ruby.
 
+To install:
+
+    gem install robin
+
 Usage:
 
 >     -user               - Authenticate new user
